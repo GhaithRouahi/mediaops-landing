@@ -3,5 +3,10 @@
   publish = "dist"
 
 [dev]
-  command = "npm run dev"
-  port = 3000
+  command = "npx vite dev"
+  port = 5173
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
