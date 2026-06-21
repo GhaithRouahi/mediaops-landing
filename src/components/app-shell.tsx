@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, Sparkles, Scissors, Target, Clock, Server, Activity } from "lucide-react";
 
 const nav = [
-  { to: "/", label: "Overview", icon: LayoutDashboard, emoji: "📊" },
+  { to: "/dashboard", label: "Overview", icon: LayoutDashboard, emoji: "📊" },
   { to: "/create", label: "Create", icon: Sparkles, emoji: "✨" },
   { to: "/clipper", label: "Clipper", icon: Scissors, emoji: "✂️" },
   { to: "/highlighter", label: "Highlighter", icon: Target, emoji: "🎯" },

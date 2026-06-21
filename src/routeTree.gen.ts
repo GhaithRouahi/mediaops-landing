@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as InfrastructureRouteImport } from './routes/infrastructure'
 import { Route as HighlighterRouteImport } from './routes/highlighter'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as ClipperRouteImport } from './routes/clipper'
 import { Route as AutopilotRouteImport } from './routes/autopilot'
@@ -24,6 +25,11 @@ const InfrastructureRoute = InfrastructureRouteImport.update({
 const HighlighterRoute = HighlighterRouteImport.update({
   id: '/highlighter',
   path: '/highlighter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateRoute = CreateRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AutopilotRoute: typeof AutopilotRoute
   ClipperRoute: typeof ClipperRoute
   CreateRoute: typeof CreateRoute
+  DashboardRoute: typeof DashboardRoute
   HighlighterRoute: typeof HighlighterRoute
   InfrastructureRoute: typeof InfrastructureRoute
 }
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/highlighter'
       fullPath: '/highlighter'
       preLoaderRoute: typeof HighlighterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create': {
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AutopilotRoute: AutopilotRoute,
   ClipperRoute: ClipperRoute,
   CreateRoute: CreateRoute,
+  DashboardRoute: DashboardRoute,
   HighlighterRoute: HighlighterRoute,
   InfrastructureRoute: InfrastructureRoute,
 }
