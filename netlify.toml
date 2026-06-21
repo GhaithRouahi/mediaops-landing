@@ -5,7 +5,7 @@
 # You can keep or remove this; it only affects `netlify dev`
 [dev]
   command = "npx vite dev"
-  port = 5173
+  port = 8080
 
 # IMPORTANT: SPA redirect so TanStack Router handles all paths
 [[redirects]]
