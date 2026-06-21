@@ -1,3 +1,4 @@
+import { useState } from "react"; // Added for video playback toggle
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, Play, FileText, Bot, Settings, Smartphone, Sparkles, Scissors, Target, Clock, Search, BarChart3, Rocket, Zap } from "lucide-react";
@@ -17,6 +18,9 @@ const container = {
 };
 
 function Landing() {
+  // State to track if the video should be playing inline
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#09090F] text-[#EEEEF5] font-[Inter,sans-serif] overflow-x-hidden">
       {/* Nav */}
@@ -175,24 +179,38 @@ function Landing() {
           transition={{ duration: 0.7 }}
           className="relative bg-[#0E0E18] border border-white/[0.08] rounded-2xl overflow-hidden aspect-video"
         >
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#0E0E18] to-[#12102A]">
-            <div className="font-[Syne] font-bold text-[22px] text-white/[0.12] tracking-tight">MEDIAOPS · PIPELINE WALKTHROUGH</div>
-            <motion.button
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              className="size-16 rounded-full bg-[#6C3CF7]/90 hover:bg-[#7D4FF8] flex items-center justify-center shadow-2xl shadow-[#6C3CF7]/40"
-              aria-label="Play demo"
-            >
-              <Play className="size-6 text-white fill-white ml-1" />
-            </motion.button>
-            <div className="font-mono text-xs text-white/35 tracking-wide">4:12 Benchmarked Core Routine</div>
-          </div>
-          {/* subtle scanline shimmer */}
-          <motion.div
-            animate={{ x: ["-100%", "100%"] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#6C3CF7]/[0.05] to-transparent pointer-events-none"
-          />
+          {isVideoPlaying ? (
+            <iframe
+              src="https://drive.google.com/file/d/1Gaox2yHPCJ-uZ4FzC0kzk55tSlicJE-G/preview"
+              className="absolute inset-0 w-full h-full border-0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title="MediaOps Demo Video"
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#0E0E18] to-[#12102A]">
+              <div className="font-[Syne] font-bold text-[22px] text-white/[0.12] tracking-tight">MEDIAOPS · PIPELINE WALKTHROUGH</div>
+              <motion.button
+                onClick={() => setIsVideoPlaying(true)}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="size-16 rounded-full bg-[#6C3CF7]/90 hover:bg-[#7D4FF8] flex items-center justify-center shadow-2xl shadow-[#6C3CF7]/40 cursor-pointer"
+                aria-label="Play demo"
+              >
+                <Play className="size-6 text-white fill-white ml-1" />
+              </motion.button>
+              <div className="font-mono text-xs text-white/35 tracking-wide">4:12 Benchmarked Core Routine</div>
+            </div>
+          )}
+          
+          {/* subtle scanline shimmer (only shows when video isn't playing) */}
+          {!isVideoPlaying && (
+            <motion.div
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-[#6C3CF7]/[0.05] to-transparent pointer-events-none"
+            />
+          )}
         </motion.div>
       </Section>
 
