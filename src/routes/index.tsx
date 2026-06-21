@@ -91,7 +91,7 @@ function Landing() {
           className="flex gap-3 justify-center flex-wrap"
         >
           <Link
-            to="/dashboard"
+            to="/"
             className="bg-[#6C3CF7] hover:bg-[#7D4FF8] hover:-translate-y-0.5 text-white px-7 py-3 rounded-lg text-sm font-medium transition-all shadow-lg shadow-[#6C3CF7]/30"
           >
             Start Automating
@@ -333,28 +333,7 @@ function Landing() {
         </motion.div>
       </Section>
 
-      {/* Stack */}
-      <section id="stack" className="px-6 md:px-10 pb-20 max-w-3xl mx-auto text-center">
-        <div className="font-mono text-[11px] text-white/20 tracking-wider uppercase mb-5">Decoupled Microservice Landscape</div>
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={container}
-          className="flex flex-wrap gap-2.5 justify-center"
-        >
-          {["React Frontend", "NestJS Enterprise Core", "FastAPI Processing Tiers", "PostgreSQL Data Storage", "LangChain Pipeline Chains", "Llama 3.1 Processing", "Whisper Structural Alignment", "Docker Swarm Cluster", "Redis Queue"].map((p) => (
-            <motion.div
-              key={p}
-              variants={fadeUp}
-              whileHover={{ borderColor: "rgba(108,60,247,0.4)", color: "#9B7BFA" }}
-              className="bg-white/[0.04] border border-white/[0.08] rounded-full px-4 py-1.5 font-mono text-xs text-white/40 transition-colors"
-            >
-              {p}
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
+
 
       {/* CTA */}
       <section className="px-6 md:px-10 pb-20 max-w-3xl mx-auto">
@@ -371,7 +350,7 @@ function Landing() {
             <p className="text-[15px] text-white/45 mb-7">Stop touching timelines. Start dispatching routines.</p>
             <div className="flex gap-3 justify-center flex-wrap">
               <Link
-                to="/dashboard"
+                to="/"
                 className="bg-[#6C3CF7] hover:bg-[#7D4FF8] hover:-translate-y-0.5 text-white px-7 py-3 rounded-lg text-sm font-medium transition-all shadow-lg shadow-[#6C3CF7]/30"
               >
                 Open the platform
