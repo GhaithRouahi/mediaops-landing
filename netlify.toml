@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".netlify/images"
+
+[dev]
+  command = "npx vinxi dev"
+  port = 3000
