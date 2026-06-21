@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: (i: number = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] } }),
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const container = {

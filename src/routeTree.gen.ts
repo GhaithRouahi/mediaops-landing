@@ -15,6 +15,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as ClipperRouteImport } from './routes/clipper'
 import { Route as AutopilotRouteImport } from './routes/autopilot'
+import { Route as IndexRouteImport } from './routes/index'
 
 const InfrastructureRoute = InfrastructureRouteImport.update({
   id: '/infrastructure',
@@ -46,8 +47,14 @@ const AutopilotRoute = AutopilotRouteImport.update({
   path: '/autopilot',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
@@ -56,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/infrastructure': typeof InfrastructureRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
@@ -65,6 +73,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
@@ -75,6 +84,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
@@ -83,6 +93,7 @@ export interface FileRouteTypes {
     | '/infrastructure'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
@@ -91,6 +102,7 @@ export interface FileRouteTypes {
     | '/infrastructure'
   id:
     | '__root__'
+    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
@@ -100,6 +112,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AutopilotRoute: typeof AutopilotRoute
   ClipperRoute: typeof ClipperRoute
   CreateRoute: typeof CreateRoute
@@ -152,10 +165,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AutopilotRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AutopilotRoute: AutopilotRoute,
   ClipperRoute: ClipperRoute,
   CreateRoute: CreateRoute,
