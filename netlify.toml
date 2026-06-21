@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".netlify/images"
+  publish = ".output/public"
 
 [dev]
   command = "npx vinxi dev"
