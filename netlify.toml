@@ -2,10 +2,12 @@
   command = "npm run build"
   publish = "dist/client"
 
+# You can keep or remove this; it only affects `netlify dev`
 [dev]
   command = "npx vite dev"
   port = 5173
 
+# IMPORTANT: SPA redirect so TanStack Router handles all paths
 [[redirects]]
   from = "/*"
   to = "/index.html"
