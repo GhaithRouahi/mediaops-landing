@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-header";
 import { Activity, Clock, Film, Workflow, Play, Pause, ArrowUpRight, Cpu } from "lucide-react";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/dashboard")({
   head: () => ({ meta: [{ title: "Overview · MediaOps" }] }),
   component: Overview,
 });

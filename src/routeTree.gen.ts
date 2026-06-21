@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as InfrastructureRouteImport } from './routes/infrastructure'
 import { Route as HighlighterRouteImport } from './routes/highlighter'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CreateRouteImport } from './routes/create'
 import { Route as ClipperRouteImport } from './routes/clipper'
 import { Route as AutopilotRouteImport } from './routes/autopilot'
-import { Route as IndexRouteImport } from './routes/index'
 
 const InfrastructureRoute = InfrastructureRouteImport.update({
   id: '/infrastructure',
@@ -24,6 +24,11 @@ const InfrastructureRoute = InfrastructureRouteImport.update({
 const HighlighterRoute = HighlighterRouteImport.update({
   id: '/highlighter',
   path: '/highlighter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateRoute = CreateRouteImport.update({
@@ -41,69 +46,64 @@ const AutopilotRoute = AutopilotRouteImport.update({
   path: '/autopilot',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/autopilot': typeof AutopilotRoute
   '/clipper': typeof ClipperRoute
   '/create': typeof CreateRoute
+  '/dashboard': typeof DashboardRoute
   '/highlighter': typeof HighlighterRoute
   '/infrastructure': typeof InfrastructureRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   id:
     | '__root__'
-    | '/'
     | '/autopilot'
     | '/clipper'
     | '/create'
+    | '/dashboard'
     | '/highlighter'
     | '/infrastructure'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AutopilotRoute: typeof AutopilotRoute
   ClipperRoute: typeof ClipperRoute
   CreateRoute: typeof CreateRoute
+  DashboardRoute: typeof DashboardRoute
   HighlighterRoute: typeof HighlighterRoute
   InfrastructureRoute: typeof InfrastructureRoute
 }
@@ -122,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/highlighter'
       fullPath: '/highlighter'
       preLoaderRoute: typeof HighlighterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/create': {
@@ -145,21 +152,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AutopilotRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AutopilotRoute: AutopilotRoute,
   ClipperRoute: ClipperRoute,
   CreateRoute: CreateRoute,
+  DashboardRoute: DashboardRoute,
   HighlighterRoute: HighlighterRoute,
   InfrastructureRoute: InfrastructureRoute,
 }
