@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".output/public"
+  publish = "dist"
 
 [dev]
-  command = "npx vinxi dev"
+  command = "npm run dev"
   port = 3000
